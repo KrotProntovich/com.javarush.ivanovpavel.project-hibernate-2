@@ -1,16 +1,16 @@
 package org.example.dao;
 
 import org.example.entity.Country;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class CountryDAO extends EntityDAO<Country> {
-    public CountryDAO() {
-        super(Country.class);
+    public CountryDAO(SessionFactory sessionFactory) {
+        super(Country.class, sessionFactory);
     }
 
-    public Country findByName(Session session, String name) {
+    public Country findByName(String name) {
         String hql = "from Country where name = :name";
-        return session
+        return getCurrentSession()
                 .createQuery(hql, Country.class)
                 .setParameter("name", name)
                 .uniqueResult();

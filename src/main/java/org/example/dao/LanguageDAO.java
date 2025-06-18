@@ -1,16 +1,16 @@
 package org.example.dao;
 
 import org.example.entity.Language;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class LanguageDAO extends EntityDAO<Language> {
-    public LanguageDAO() {
-        super(Language.class);
+    public LanguageDAO(SessionFactory sessionFactory) {
+        super(Language.class, sessionFactory);
     }
 
-    public Language findLanguageByName(Session session, String languageName) {
+    public Language findLanguageByName(String languageName) {
         String hql = "from Language where name=:languageName";
-        return session.createQuery(hql, Language.class)
+        return getCurrentSession().createQuery(hql, Language.class)
                 .setParameter("languageName", languageName)
                 .uniqueResult();
     }

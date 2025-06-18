@@ -1,10 +1,10 @@
 package org.example.dao;
 
 import org.example.entity.Staff;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class StaffDAO extends EntityDAO<Staff> {
-    public StaffDAO() {
-        super(Staff.class);
+    public StaffDAO(SessionFactory sessionFactory) {
+        super(Staff.class, sessionFactory);
     }
 }

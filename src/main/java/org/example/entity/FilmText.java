@@ -17,7 +17,7 @@ public class FilmText {
     private String title;
 
     @Column(name = "description", columnDefinition = "text")
-    private String description;
+    private String description = null;
 
     public Short getId() {
         return id;

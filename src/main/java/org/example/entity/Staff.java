@@ -25,23 +25,23 @@ public class Staff {
 
     @Lob
     @Column(name = "picture", columnDefinition = "BLOB")
-    private byte[] picture;
+    private byte[] picture = null;
 
     @Column(name = "email", length = 50)
-    private String email;
+    private String email = null;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @Column(name = "active", nullable = false, columnDefinition = "BIT default 1")
-    private Boolean isActive;
+    @Column(name = "active", nullable = false, columnDefinition = "BIT")
+    private Boolean isActive = true;
 
     @Column(name = "username", nullable = false, length = 16)
     private String userName;
 
     @Column(name = "password", length = 40)
-    private String password;
+    private String password = null;
 
     @UpdateTimestamp
     @Column(name = "last_update", nullable = false)

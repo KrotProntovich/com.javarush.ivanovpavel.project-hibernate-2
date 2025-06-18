@@ -16,7 +16,7 @@ public class City {
     @Column(name = "city", nullable = false, length = 50)
     private String city;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Country country;
 

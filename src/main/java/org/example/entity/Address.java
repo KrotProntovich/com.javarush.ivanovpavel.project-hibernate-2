@@ -1,7 +1,6 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -18,7 +17,7 @@ public class Address {
     private String address;
 
     @Column(name = "address2", length = 50)
-    private String address2;
+    private String alternativeAddress = null;
 
     @Column(name = "district", nullable = false, length = 20)
     private String district;
@@ -28,7 +27,7 @@ public class Address {
     private City city;
 
     @Column(name = "postal_code", length = 10)
-    private String postalCode;
+    private String postalCode = null;
 
     @Column(name = "phone", nullable = false, length = 20)
     private String phone;
@@ -53,12 +52,12 @@ public class Address {
         this.address = address;
     }
 
-    public String getAddress2() {
-        return address2;
+    public String getAlternativeAddress() {
+        return alternativeAddress;
     }
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setAlternativeAddress(String alternativeAddress) {
+        this.alternativeAddress = alternativeAddress;
     }
 
     public String getDistrict() {

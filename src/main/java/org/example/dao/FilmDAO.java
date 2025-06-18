@@ -1,16 +1,16 @@
 package org.example.dao;
 
 import org.example.entity.Film;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class FilmDAO extends EntityDAO<Film> {
-    public FilmDAO() {
-        super(Film.class);
+    public FilmDAO(SessionFactory sessionFactory) {
+        super(Film.class, sessionFactory);
     }
 
-    public Film findByName(Session session, String filmName) {
+    public Film findByName(String filmName) {
         String hql = "from Film where title like :filmName";
-        return session
+        return getCurrentSession()
                 .createQuery(hql, Film.class)
                 .setParameter("filmName", filmName)
                 .uniqueResult();

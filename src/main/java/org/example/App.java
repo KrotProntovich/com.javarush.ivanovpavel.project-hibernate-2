@@ -1,20 +1,15 @@
 package org.example;
 
 import com.mysql.cj.util.StringUtils;
-import org.example.config.MySessionFactory;
 import org.example.dao.*;
 import org.example.entity.*;
-import org.example.enums.Feature;
-import org.example.enums.Rating;
+import org.example.enums.*;
 import org.example.service.WorkerDB;
 import org.hibernate.Session;
 
 import java.math.BigDecimal;
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class App{
@@ -23,47 +18,42 @@ public class App{
     public static void main( String[] args ){
         WorkerDB workerDB = new WorkerDB();
 
-        // Проверка на поиск/добавление страны
-//        Country country1 = workerDB.getCountryFromDB("Slovakia");
-//        System.out.println(country1.getId()); //
-//        Country country2 = workerDB.createCountryFromDB("LostCountry");
-//        System.out.println(country2.getId());
-
-        // Проверка на поиск/добавление города
-//        City city1 = workerDB.getCityFromDB("Zaria", "Nigeria");
-//        System.out.println(city1.getId() + "/" + city1.getCountry().getId());
-//        City city2 = workerDB.createCityInDB("SinCity", "LostCountry");
-//        System.out.println(city2.getId() + "/" + city2.getCountry().getId());
-
-        // Проверка на поиск/добавление адреса
-//        Address address1 = workerDB.getAddressFromDB("1531 Sal Drive", "648856936185");
-//        System.out.println(address1.getId() + "/" + address1.getCity().getId() + "/" + address1.getCity().getCountry().getId());
-//        Address address2 = workerDB.createAddressInDB("666 AngelStreet", "", "DeadInside",
-//                "SinCity","LostCountry", "69696", "9996669966");
-//        System.out.println(address2.getId() + "/" + address2.getCity().getId() + "/" + address2.getCity().getCountry().getId());
-
-
         // Проверка на поиск/добавление покупателя
-//        Customer customer1 = workerDB.getCustomerFromDB("Joann", "Gardner",
-//                "JOANN.GARDNER@sakilacustomer.org", 2);
-//        System.out.println(customer1.getId() + "/" + customer1.getAddress().getId() + "/"
+
+//        long startMySQL1 = System.currentTimeMillis();
+//        Customer customer1 = workerDB.creteCustomerInDB(1, "Maria", "Miller", "MARIA.MILLER@sakilacustomer.org",
+//                "900 Santiago de Compostela Parkway", "Central Serbia", "Kragujevac", "Yugoslavia",
+//                "93896", "716571220373");
+//        long stopMySQL1 = System.currentTimeMillis();
+//        System.out.println((stopMySQL1 - startMySQL1) + " " + customer1.getId() + "/" + customer1.getAddress().getId() + "/"
 //                + customer1.getAddress().getCity().getId() + "/" + customer1.getAddress().getCity().getCountry().getId());
 
-//        Customer customer2 = workerDB.creteCustomerInDB(1, "Tod", "Jon", "TODNOJHON@josh.cam",
-//                "666 AngelStreet", "", "DeadInside", "SinCity", "LostCountry",
-//                "69696", "9996669966");
-//        System.out.println(customer2.getId() + "/" + customer2.getAddress().getId() + "/"
+
+//        long startMySQL2 = System.currentTimeMillis();
+//        Customer customer2 = workerDB.creteCustomerInDB(1, "Jon", "Jonson", "JONJONSON@josh.cam",
+//                "666 AngelStreet", "DeadInside", "SinCity", "LostCountry",
+//                "666", "6660000000");
+//        long stopMySQL2 = System.currentTimeMillis();
+//        System.out.println((stopMySQL2 - startMySQL2) + " " + customer2.getId() + "/" + customer2.getAddress().getId() + "/"
 //                + customer2.getAddress().getCity().getId() + "/" + customer2.getAddress().getCity().getCountry().getId());
+
+//        long startMySQL3 = System.currentTimeMillis();
+//        Customer customer3 = workerDB.creteCustomerInDB(1, "Tod", "Jonson", "TODJONSON@josh.cam",
+//                "999 LostStreet", "Lost", "LostCity", "LostCountry",
+//                "999", "9990000000");
+//        long stopMySQL3 = System.currentTimeMillis();
+//        System.out.println((stopMySQL3 - startMySQL3) + " " + customer3.getId() + "/" + customer3.getAddress().getId() + "/"
+//                + customer3.getAddress().getCity().getId() + "/" + customer3.getAddress().getCity().getCountry().getId());
 
 
         // Завершение аренды
-//        String s = workerDB.endOfRental("DWAYNE", "OLVERA", "DWAYNE.OLVERA@sakilacustomer.org",
+//        String endOfRental = workerDB.endOfRental("DWAYNE", "OLVERA", "DWAYNE.OLVERA@sakilacustomer.org",
 //                "ACADEMY DINOSAUR", 1);
-//        System.out.println(s);
+//        System.out.println(endOfRental);
 
         // Начало аренды
-//        String s = workerDB.startOfRental("Tod", "Jon", "TODNOJHON@josh.cam", "ACADEMY DINOSAUR", 1);
-//        System.out.println(s);
+//        String startOfRental = workerDB.startOfRental("DWAYNE", "OLVERA", "DWAYNE.OLVERA@sakilacustomer.org", "ACADEMY DINOSAUR", 1);
+//        System.out.println(startOfRental);
 
         // Новый фильм в прокате
 //        String name = "Shooter";
@@ -90,9 +80,11 @@ public class App{
 //        categories.add("Mystery");
 //        Integer countNewFilm = 3;
 //
-//        String s = workerDB.addFilmInDB(name, description, year, languageName, originalLanguageName, rentalDuration, rentalRate,
-//                length, replacementCost, rating, features, actors, categories, countNewFilm);
+//        String s = workerDB.addFilmInDB(name, description, year, languageName,
+//                length, rating, features, actors, categories, countNewFilm);
 //        System.out.println(s);
+
+        workerDB.shutdown();
 
     }
 }

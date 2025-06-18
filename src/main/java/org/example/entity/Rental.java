@@ -27,7 +27,7 @@ public class Rental {
     private Customer customer;
 
     @Column(name = "return_date", columnDefinition = "datetime")
-    private LocalDateTime returnDate;
+    private LocalDateTime returnDate = null;
 
     @ManyToOne
     @JoinColumn(name = "staff_id")

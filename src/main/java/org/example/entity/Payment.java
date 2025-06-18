@@ -25,7 +25,7 @@ public class Payment {
 
     @OneToOne
     @JoinColumn(name = "rental_id")
-    private Rental rental;
+    private Rental rental = null;
 
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;

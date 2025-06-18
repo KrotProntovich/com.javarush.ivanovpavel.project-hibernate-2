@@ -22,10 +22,10 @@ public class Film {
     private String title;
 
     @Column(name = "description", columnDefinition = "text")
-    private String description;
+    private String description = null;
 
     @Column(name = "release_year", columnDefinition = "year")
-    private Year release;
+    private Year release = null;
 
     @ManyToOne
     @JoinColumn(name = "language_id")
@@ -33,27 +33,27 @@ public class Film {
 
     @ManyToOne
     @JoinColumn(name = "original_language_id")
-    private Language originalLanguage;
+    private Language originalLanguage = null;
 
-    @Column(name = "rental_duration", nullable = false, columnDefinition = "tinyint default 3")
+    @Column(name = "rental_duration", nullable = false)
     private Byte rentalDuration = 3;
 
-    @Column(name = "rental_rate", nullable = false, columnDefinition = "decimal default 4.99")
+    @Column(name = "rental_rate", nullable = false, columnDefinition = "DECIMAL(4,2)")
     private BigDecimal rentalRate = BigDecimal.valueOf(4.99);
 
     @Column(name = "length")
-    private Short length;
+    private Short length = null;
 
-    @Column(name = "replacement_cost", nullable = false, columnDefinition = "decimal default 19.99")
+    @Column(name = "replacement_cost", nullable = false, columnDefinition = "DECIMAL(5,2)")
     private BigDecimal replacementCost =  BigDecimal.valueOf(19.99);
 
     @Convert(converter = RatingConverter.class)
-    @Column(name = "rating", columnDefinition = "enum('G', 'PG', 'PG-13', 'R', 'NC-17') default 'G'")
+    @Column(name = "rating", columnDefinition = "enum('G', 'PG', 'PG-13', 'R', 'NC-17')")
     private Rating rating = Rating.G;
 
     @Convert(converter = FeatureConverter.class)
     @Column(name = "special_features", columnDefinition = "set('Trailers', 'Commentaries', 'Deleted Scenes', 'Behind the Scenes')")
-    private Set<Feature> specialFeatures;
+    private Set<Feature> specialFeatures = null;
 
     @UpdateTimestamp
     @Column(name = "last_update", nullable = false)

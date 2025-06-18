@@ -26,13 +26,13 @@ public class Customer {
     private String lastName;
 
     @Column(name = "email", length = 50)
-    private String email;
+    private String email = null;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Column(name = "active", nullable = false, columnDefinition = "BIT default 1")
+    @Column(name = "active", nullable = false, columnDefinition = "BIT")
     private Boolean isActive = true;
 
     @CreationTimestamp

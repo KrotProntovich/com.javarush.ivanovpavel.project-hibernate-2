@@ -1,16 +1,16 @@
 package org.example.dao;
 
 import org.example.entity.Customer;
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 public class CustomerDAO extends EntityDAO<Customer> {
-    public CustomerDAO() {
-        super(Customer.class);
+    public CustomerDAO(SessionFactory sessionFactory) {
+        super(Customer.class, sessionFactory);
     }
 
-    public Customer findByFirstLastNameAndEmailAndStore(Session session, String firstName, String lastName, String email, Integer storeId) {
+    public Customer findByFirstLastNameAndEmailAndStore(String firstName, String lastName, String email, Integer storeId) {
         String hql = "from Customer c where c.firstName like :firstName and c.lastName like :lastName and c.email like :email and c.store.id = :storeId";
-        return session
+        return getCurrentSession()
                 .createQuery(hql, Customer.class)
                 .setParameter("firstName", firstName)
                 .setParameter("lastName", lastName)

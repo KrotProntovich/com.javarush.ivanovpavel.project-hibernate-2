@@ -19,13 +19,11 @@ public class EntityFactory {
     }
 
     // Создание объекта адрес
-    public Address createAddress(String addressName, String address2, String district, City city, String postalCode, String phone) {
+    public Address createAddress(String addressName, String district, City city, String phone) {
         Address address = new Address();
         address.setAddress(addressName);
-        address.setAddress2(address2);
         address.setDistrict(district);
         address.setCity(city);
-        address.setPostalCode(postalCode);
         address.setPhone(phone);
         return address;
     }
@@ -64,22 +62,15 @@ public class EntityFactory {
     }
 
     // Создание объекта фильм
-    public Film createFilm(String title, String description, Year release,
-                            Language language, Language originalLanguage, Byte rentalDuration,
-                            BigDecimal rentalRate, Short length, BigDecimal replacementCost, Rating rating,
-                            Set<Feature> specialFeatures) {
+    public Film createFilm(String title, String description, Year release, Language language, Short length, Rating rating,  Set<Feature> features) {
         Film film = new Film();
         film.setTitle(title);
         film.setDescription(description);
         film.setRelease(release);
         film.setLanguage(language);
-        film.setOriginalLanguage(originalLanguage);
-        film.setRentalDuration(rentalDuration);
-        film.setRentalRate(rentalRate);
         film.setLength(length);
-        film.setReplacementCost(replacementCost);
         film.setRating(rating);
-        film.setSpecialFeatures(specialFeatures);
+        film.setSpecialFeatures(features);
         return film;
     }
 
@@ -109,11 +100,10 @@ public class EntityFactory {
     }
 
     // Создание объекта оплаты
-    public Payment createPayment(Customer customer, Staff staff, Rental rental, BigDecimal amount) {
+    public Payment createPayment(Customer customer, Staff staff, BigDecimal amount) {
         Payment payment = new Payment();
         payment.setCustomer(customer);
         payment.setStaff(staff);
-        payment.setRental(rental);
         payment.setAmount(amount);
         return payment;
     }
